@@ -1,6 +1,7 @@
 # Gemini CLI - Korean Edition (Korean Input Support) 🇰🇷
 
 > **🌐 Language / 언어 선택**
+>
 > - 🇬🇧 **English** (Current document)
 > - 🇰🇷 **한국어** → [README.md](./README.md)
 
@@ -11,18 +12,22 @@
 
 > **🎯 A community fork that perfectly resolves Korean input issues!**
 >
-> This fork fixes the Korean character decomposition and IME input errors from the original Gemini CLI.
+> This fork fixes the Korean character decomposition and IME input errors from
+> the original Gemini CLI.
 
 ![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
 
 ## 🇰🇷 Korean Edition Features
 
 ### ✅ Resolved Issues
-- **Fixed Character Decomposition**: Korean text no longer breaks into individual jamo (ㄱ,ㅏ,ㄴ)
+
+- **Fixed Character Decomposition**: Korean text no longer breaks into
+  individual jamo (ㄱ,ㅏ,ㄴ)
 - **IME Input Support**: Windows Korean IME now works perfectly
 - **Complete Korean Input**: Natural Korean typing experience
 
 ### 🔧 Technical Improvements
+
 - Unified input handling in KeypressContext
 - Disabled Ink's useInput to prevent conflicts
 - Full support for IME composition state
@@ -34,9 +39,11 @@
 
 ## 🚀 Key Features
 
-- **🎯 Free Tier**: 60 requests/minute, 1,000 requests/day with personal Google account
+- **🎯 Free Tier**: 60 requests/minute, 1,000 requests/day with personal Google
+  account
 - **🧠 Powerful Gemini 2.5 Pro**: 1M token context window support
-- **🔧 Built-in Tools**: Google Search, file operations, shell commands, web fetching
+- **🔧 Built-in Tools**: Google Search, file operations, shell commands, web
+  fetching
 - **🔌 Extensible**: Custom integration support via MCP (Model Context Protocol)
 - **💻 Terminal First**: Designed for command-line loving developers
 - **🛡️ Open Source**: Apache 2.0 License
@@ -47,6 +54,7 @@
 ## 📦 Installation
 
 ### Prerequisites
+
 - **Node.js 20.0.0 or higher**
 - macOS, Linux, or Windows
 
@@ -81,8 +89,10 @@ npm link
 
 This fork uses a different package name to avoid conflicts with the original:
 
-- ❌ **DO NOT install**: npm install -g @google/gemini-cli (original, has Korean input issues)
-- ✅ **INSTALL this**: npm install -g @wrl-spr/gemini-cli-ko (Korean Edition, issues resolved)
+- ❌ **DO NOT install**: npm install -g @google/gemini-cli (original, has Korean
+  input issues)
+- ✅ **INSTALL this**: npm install -g @wrl-spr/gemini-cli-ko (Korean Edition,
+  issues resolved)
 
 ---
 
@@ -93,6 +103,7 @@ This fork uses a different package name to avoid conflicts with the original:
 **✨ Best for**: Individual developers and Gemini Code Assist license holders
 
 **Benefits**:
+
 - Free tier: 60 requests/minute, 1,000 requests/day
 - **Gemini 2.5 Pro** (1M token context)
 - No API key management needed
@@ -162,8 +173,10 @@ All documentation from the original Gemini CLI applies to this Korean Edition:
 This is a community fork. Contributions are welcome!
 
 ### Reporting Issues
+
 - **Korean Input Issues**: Create an issue in this repository
-- **General Gemini CLI Issues**: Report to [original repository](https://github.com/google-gemini/gemini-cli/issues)
+- **General Gemini CLI Issues**: Report to
+  [original repository](https://github.com/google-gemini/gemini-cli/issues)
 
 ---
 
