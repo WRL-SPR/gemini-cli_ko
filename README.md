@@ -1,5 +1,9 @@
 # Gemini CLI - Korean Edition (한국어 입력 지원) 🇰🇷
 
+> **🌐 Language / 언어 선택**
+> - 🇰🇷 **한국어** (현재 문서)
+> - 🇬🇧 **English** → [README_EN.md](./README_EN.md)
+
 [![Korean Edition](https://img.shields.io/badge/Korean-Edition-blue.svg)](https://github.com/WRL-SPR/gemini-cli_ko)
 [![Version](https://img.shields.io/npm/v/@wrl-spr/gemini-cli-ko)](https://www.npmjs.com/package/@wrl-spr/gemini-cli-ko)
 [![License](https://img.shields.io/github/license/WRL-SPR/gemini-cli_ko)](https://github.com/WRL-SPR/gemini-cli_ko/blob/main/LICENSE)
