@@ -6,8 +6,8 @@
 
 import type React from 'react';
 import clipboardy from 'clipboardy';
-import { useCallback, useEffect, useState, useRef } from 'react';
-import { Box, Text, useStdout, type DOMElement } from 'ink';
+import { useCallback, useEffect, useState, useRef, useLayoutEffect } from 'react';
+import { Box, Text, useStdout, type DOMElement, useInput, measureElement } from 'ink';
 import { SuggestionsDisplay, MAX_WIDTH } from './SuggestionsDisplay.js';
 import { theme } from '../semantic-colors.js';
 import { useInputHistory } from '../hooks/useInputHistory.js';
@@ -48,6 +48,8 @@ import { StreamingState } from '../types.js';
 import { useMouseClick } from '../hooks/useMouseClick.js';
 import { useMouse, type MouseEvent } from '../contexts/MouseContext.js';
 import { useUIActions } from '../contexts/UIActionsContext.js';
+import { useAlternateBuffer } from '../hooks/useAlternateBuffer.js';
+import ansiEscapes from 'ansi-escapes';
 
 /**
  * Returns if the terminal can be trusted to handle paste events atomically
@@ -134,6 +136,7 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
   const { merged: settings } = useSettings();
   const kittyProtocol = useKittyKeyboardProtocol();
   const isShellFocused = useShellFocusState();
+  const isAlternateBuffer = useAlternateBuffer();
   const { setEmbeddedShellFocused } = useUIActions();
   const { mainAreaWidth, activePtyId } = useUIState();
   const [justNavigatedHistory, setJustNavigatedHistory] = useState(false);
@@ -385,6 +388,64 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
       }
     },
     { isActive: focus },
+  );
+
+  // Manually position the real terminal cursor at the virtual cursor's location.
+  // This is necessary for the OS Input Method Editor (IME) to correctly display
+  // its composition window, fixing issues where characters in composite languages
+  // like Korean don't appear until committed (e.g., by pressing space).
+  useLayoutEffect(() => {
+    if (isAlternateBuffer && showCursor && innerBoxRef.current) {
+      const dimensions = measureElement(innerBoxRef.current);
+      const [cursorVisualRowAbsolute, cursorVisualColAbsolute] =
+        buffer.visualCursor;
+      const scrollVisualRow = buffer.visualScrollRow;
+
+      const x = dimensions.left + cursorVisualColAbsolute;
+      const y = dimensions.top + (cursorVisualRowAbsolute - scrollVisualRow);
+
+      stdout.write(ansiEscapes.cursorTo(x, y) + ansiEscapes.cursorShow);
+    }
+  }, [
+    isAlternateBuffer,
+    showCursor,
+    buffer.visualCursor,
+    buffer.visualScrollRow,
+    stdout,
+  ]);
+
+  // Use Ink's useInput for regular text input as it handles input across platforms (especially Windows) better.
+  // We filter out keys that should be handled by useKeypress (control keys, navigation).
+  useInput(
+    (input, key) => {
+      if (
+        !key.ctrl &&
+        !key.meta &&
+        !key.return &&
+        !key.backspace &&
+        !key.tab &&
+        !key.escape &&
+        !key.upArrow &&
+        !key.downArrow &&
+        !key.leftArrow &&
+        !key.rightArrow &&
+        !key.delete &&
+        !key.pageUp &&
+        !key.pageDown
+      ) {
+        buffer.insert(input);
+        
+        // Clear ghost text when user types regular characters
+        if (
+          completion.promptCompletion.text &&
+          input.length === 1
+        ) {
+          completion.promptCompletion.clear();
+          setExpandedSuggestionIndex(-1);
+        }
+      }
+    },
+    { isActive: focus && !isEmbeddedShellFocused },
   );
 
   const handleInput = useCallback(
@@ -836,6 +897,13 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
         }
         return;
       }
+      
+      // We explicitly bypass default handling for printable characters here
+      // because we are using ink's useInput for that (above) which handles
+      // Windows CJK input better.
+      if (key.insertable && !key.ctrl && !key.meta && !key.paste) {
+        return;
+      }
 
       // Fall back to the text buffer's default input handling for all other keys
       buffer.handleInput(key);
@@ -880,6 +948,7 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
       setBannerVisible,
       activePtyId,
       setEmbeddedShellFocused,
+      setExpandedSuggestionIndex,
     ],
   );
 
