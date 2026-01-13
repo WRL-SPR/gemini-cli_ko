@@ -414,39 +414,10 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
     stdout,
   ]);
 
-  // Use Ink's useInput for regular text input as it handles input across platforms (especially Windows) better.
-  // We filter out keys that should be handled by useKeypress (control keys, navigation).
-  useInput(
-    (input, key) => {
-      if (
-        !key.ctrl &&
-        !key.meta &&
-        !key.return &&
-        !key.backspace &&
-        !key.tab &&
-        !key.escape &&
-        !key.upArrow &&
-        !key.downArrow &&
-        !key.leftArrow &&
-        !key.rightArrow &&
-        !key.delete &&
-        !key.pageUp &&
-        !key.pageDown
-      ) {
-        buffer.insert(input);
-        
-        // Clear ghost text when user types regular characters
-        if (
-          completion.promptCompletion.text &&
-          input.length === 1
-        ) {
-          completion.promptCompletion.clear();
-          setExpandedSuggestionIndex(-1);
-        }
-      }
-    },
-    { isActive: focus && !isEmbeddedShellFocused },
-  );
+  // We explicitly disable Ink's default input handling here in favor of
+  // our KeypressContext to better support CJK input (especially on Windows)
+  // and avoid issues with composition and character duplication.
+  useInput(() => {}, { isActive: focus && !isEmbeddedShellFocused });
 
   const handleInput = useCallback(
     (key: Key) => {
@@ -895,13 +866,6 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
         if (activePtyId) {
           setEmbeddedShellFocused(true);
         }
-        return;
-      }
-      
-      // We explicitly bypass default handling for printable characters here
-      // because we are using ink's useInput for that (above) which handles
-      // Windows CJK input better.
-      if (key.insertable && !key.ctrl && !key.meta && !key.paste) {
         return;
       }
 
