@@ -1,232 +1,192 @@
-# Gemini CLI - Korean Edition (한국어 입력 지원)
+# Gemini CLI - Korean Edition (한국어 입력 지원) 🇰🇷
 
 [![Korean Edition](https://img.shields.io/badge/Korean-Edition-blue.svg)](https://github.com/WRL-SPR/gemini-cli_ko)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Version](https://img.shields.io/npm/v/@wrl-spr/gemini-cli-ko)](https://www.npmjs.com/package/@wrl-spr/gemini-cli-ko)
+[![License](https://img.shields.io/github/license/WRL-SPR/gemini-cli_ko)](https://github.com/WRL-SPR/gemini-cli_ko/blob/main/LICENSE)
+[![Based on](https://img.shields.io/badge/based%20on-google--gemini%2Fgemini--cli-green)](https://github.com/google-gemini/gemini-cli)
 
-> **한국어 입력 문제 해결!** 이 포크는 원본 gemini-cli의 한국어 입력 버그를 수정했습니다.
-> 
-> **Korean Input Fixed!** This fork fixes the Korean input handling issues in the original gemini-cli.
+> **🎯 한국어 입력 문제를 완벽하게 해결한 커뮤니티 포크입니다!**
+>
+> 원본 Gemini CLI의 한국어 자소 분리 문제와 IME 입력 오류를 수정했습니다.
 
-## 🎯 주요 개선사항 (Key Improvements)
+![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
 
-- ✅ **한국어 입력 완벽 지원** - 조합 중인 한글이 제대로 입력됩니다
-- ✅ **Korean Input Support** - Properly handles Korean character composition (Hangul Jamo)
-- ✅ **버그 수정** - 원본의 한국어 입력 시 발생하던 문제 해결
-- ✅ **Bug Fixes** - Resolved issues with Korean input in the original version
+## 🇰🇷 한국어 에디션의 특징
+
+### ✅ 해결된 문제
+- **자소 분리 문제 해결**: 한글이 더 이상 ㄱ,ㅏ,ㄴ 으로 분해되지 않습니다
+- **IME 입력 지원**: Windows 한글 IME가 완벽하게 동작합니다  
+- **완전한 한글 입력**: 자연스러운 한국어 타이핑 경험
+
+### 🔧 기술적 개선사항
+- KeypressContext에서 통합 입력 처리
+- Ink의 useInput 비활성화로 충돌 방지
+- IME composition state 완벽 지원
+- CJK 언어 (한국어, 일본어, 중국어) 전체 지원
+
+**📖 자세한 내용**: [RELEASE_NOTES_KO.md](./RELEASE_NOTES_KO.md)
 
 ---
 
-## 📖 소개 (Introduction)
+## 🚀 주요 기능
 
-Google Gemini AI와 대화할 수 있는 강력한 명령줄 인터페이스입니다. 이제 한국어 입력을 완벽하게 지원합니다!
+- **🎯 무료 티어**: 개인 Google 계정으로 분당 60회, 일일 1,000회 요청
+- **🧠 강력한 Gemini 2.5 Pro**: 1M 토큰 컨텍스트 윈도우 지원
+- **🔧 내장 도구**: Google Search, 파일 작업, 셸 명령어, 웹 페칭
+- **🔌 확장 가능**: MCP(Model Context Protocol) 커스텀 통합 지원
+- **💻 터미널 우선**: 명령줄을 사랑하는 개발자를 위한 설계
+- **🛡️ 오픈소스**: Apache 2.0 라이선스
+- **🇰🇷 한국어 완벽 지원**: 한글 입력 특화 (한국어 에디션만)
 
-A powerful command-line interface for interacting with Google's Gemini AI, now with full Korean language input support!
+---
 
-## ✨ 기능 (Features)
+## 📦 설치 방법
 
-- 💬 **대화형 채팅** - Gemini AI와 자연스러운 대화
-- 🌍 **다국어 지원** - 한국어를 포함한 모든 언어 완벽 지원
-- 📁 **파일 업로드** - 이미지 및 문서 분석
-- 🎨 **구문 강조** - 코드 블록의 아름다운 표시
-- 📝 **마크다운 렌더링** - 응답을 포맷팅된 마크다운으로 표시
-- 💾 **대화 기록** - 대화 저장 및 불러오기
-- ⚙️ **설정 가능** - 모델, 온도, 최대 토큰 수 등 조정 가능
-- 🔒 **안전한 API 키 관리** - 환경 변수를 통한 보안
+### 필수 요구사항
+- **Node.js 20.0.0 이상**
+- macOS, Linux, 또는 Windows
 
-## 📋 요구사항 (Requirements)
+### 방법 1: npm으로 설치 (권장) ✨
 
-- Node.js 18.0.0 이상
-- Google Gemini API 키 ([여기서 발급](https://makersuite.google.com/app/apikey))
+```bash
+# 전역 설치
+npm install -g @wrl-spr/gemini-cli-ko
 
-## 🚀 설치 방법 (Installation)
+# 실행
+gemini
+```
 
-### Git Clone으로 설치 (Installation via Git Clone)
+### 방법 2: 소스에서 설치
 
 ```bash
 # 저장소 클론
 git clone https://github.com/WRL-SPR/gemini-cli_ko.git
-
-# 디렉토리 이동
 cd gemini-cli_ko
 
 # 의존성 설치
 npm install
 
-# 전역 설치 (선택사항)
+# 빌드
+npm run build
+
+# 전역 링크 (선택사항)
 npm link
 ```
 
-### 설정 (Configuration)
+### ⚠️ 중요: npm 패키지 이름
 
-API 키를 환경 변수로 설정하세요:
+이 포크는 원본과 충돌을 피하기 위해 다른 패키지 이름을 사용합니다:
 
-```bash
-# Linux/Mac
-export GEMINI_API_KEY='your-api-key-here'
-
-# Windows (PowerShell)
-$env:GEMINI_API_KEY='your-api-key-here'
-
-# Windows (CMD)
-set GEMINI_API_KEY=your-api-key-here
-```
-
-또는 `.env` 파일을 프로젝트 루트에 생성:
-
-```
-GEMINI_API_KEY=your-api-key-here
-```
-
-## 💡 사용법 (Usage)
-
-### 기본 사용 (Basic Usage)
-
-```bash
-# 대화형 모드 시작
-gemini-cli
-
-# 또는 로컬 설치 시
-node src/index.js
-```
-
-### 한국어 입력 테스트 (Korean Input Test)
-
-```bash
-# 한국어로 질문하기
-gemini-cli
-
-> 안녕하세요! 한국어로 대화할 수 있나요?
-> 서울의 날씨에 대해 알려주세요.
-> 프로그래밍에서 변수란 무엇인가요?
-```
-
-### 파일과 함께 사용 (With Files)
-
-```bash
-# 이미지 분석
-gemini-cli --file ./image.jpg
-
-# 여러 파일 업로드
-gemini-cli --file ./doc1.pdf --file ./image.png
-```
-
-### 명령 옵션 (Command Options)
-
-```bash
-# 특정 모델 사용
-gemini-cli --model gemini-1.5-pro
-
-# 온도 설정 (창의성 조절)
-gemini-cli --temperature 0.8
-
-# 최대 토큰 수 설정
-gemini-cli --max-tokens 2048
-
-# 시스템 프롬프트 설정
-gemini-cli --system "You are a helpful coding assistant"
-
-# 대화 저장
-gemini-cli --save conversation.json
-
-# 대화 불러오기
-gemini-cli --load conversation.json
-```
-
-## 🎮 인터랙티브 명령어 (Interactive Commands)
-
-대화형 모드에서 사용 가능한 명령어:
-
-- `/help` - 도움말 표시
-- `/clear` - 대화 기록 지우기
-- `/save [filename]` - 대화 저장
-- `/load [filename]` - 대화 불러오기
-- `/model [name]` - 모델 변경
-- `/temperature [value]` - 온도 설정
-- `/file [path]` - 파일 업로드
-- `/exit` - 종료
-
-## 🔧 고급 설정 (Advanced Configuration)
-
-설정 파일을 생성하여 기본값을 변경할 수 있습니다 (`~/.gemini-cli-config.json`):
-
-```json
-{
-  "model": "gemini-1.5-pro",
-  "temperature": 0.7,
-  "maxTokens": 4096,
-  "systemPrompt": "You are a helpful assistant that responds in Korean when appropriate."
-}
-```
-
-## 🐛 문제 해결 (Troubleshooting)
-
-### 한국어 입력이 안 되는 경우
-
-이 Korean Edition을 사용하고 있는지 확인하세요:
-
-```bash
-git remote -v
-# origin이 https://github.com/WRL-SPR/gemini-cli_ko.git 인지 확인
-```
-
-### API 키 오류
-
-```bash
-# API 키가 올바르게 설정되었는지 확인
-echo $GEMINI_API_KEY  # Linux/Mac
-echo %GEMINI_API_KEY%  # Windows
-```
-
-### 의존성 오류
-
-```bash
-# node_modules 삭제 후 재설치
-rm -rf node_modules package-lock.json
-npm install
-```
-
-## 📚 지원되는 모델 (Supported Models)
-
-- `gemini-1.5-pro` (기본값 / Default)
-- `gemini-1.5-flash`
-- `gemini-1.0-pro`
-- 기타 Gemini API가 지원하는 모든 모델
-
-## 🤝 기여하기 (Contributing)
-
-이슈나 풀 리퀘스트는 언제나 환영합니다!
-
-Contributions are always welcome!
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 라이선스 (License)
-
-MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
-
-## 🙏 감사의 말 (Acknowledgments)
-
-- 원본 프로젝트에 감사드립니다
-- Google Gemini API 팀에 감사드립니다
-- 한국어 입력 버그를 발견하고 보고해주신 모든 분들께 감사드립니다
-
-## 🔗 링크 (Links)
-
-- [GitHub Repository](https://github.com/WRL-SPR/gemini-cli_ko)
-- [Issue Tracker](https://github.com/WRL-SPR/gemini-cli_ko/issues)
-- [Google Gemini API Documentation](https://ai.google.dev/docs)
-
-## 📞 연락처 (Contact)
-
-문제가 있거나 제안사항이 있으시면 [이슈를 생성](https://github.com/WRL-SPR/gemini-cli_ko/issues)해주세요.
+- ❌ **설치하면 안 되는 것**: npm install -g @google/gemini-cli (원본, 한글 입력 문제 있음)
+- ✅ **설치해야 하는 것**: npm install -g @wrl-spr/gemini-cli-ko (한국어 에디션, 문제 해결됨)
 
 ---
 
-**Made with ❤️ for the Korean Developer Community**
+## 🔐 인증 옵션
 
-**한국 개발자 커뮤니티를 위해 ❤️로 만들었습니다**
+### 옵션 1: Google 로그인 (OAuth) - 추천
+
+**✨ 최적**: 개인 개발자 및 Gemini Code Assist 라이선스 보유자
+
+**장점**:
+- 무료 티어: 분당 60회, 일일 1,000회
+- **Gemini 2.5 Pro** (1M 토큰 컨텍스트)
+- API 키 관리 불필요
+
+```bash
+gemini
+# "Login with Google" 선택 후 브라우저에서 인증
+```
+
+### 옵션 2: Gemini API 키
+
+```bash
+# https://aistudio.google.com/apikey 에서 키 발급
+export GEMINI_API_KEY="YOUR_API_KEY"
+gemini
+```
+
+### 옵션 3: Vertex AI
+
+```bash
+export GOOGLE_API_KEY="YOUR_API_KEY"
+export GOOGLE_GENAI_USE_VERTEXAI=true
+gemini
+```
+
+---
+
+## 🚀 시작하기
+
+### 기본 사용법
+
+```bash
+# 현재 디렉토리에서 시작
+gemini
+
+# 여러 디렉토리 포함
+gemini --include-directories ../lib,../docs
+
+# 특정 모델 사용
+gemini -m gemini-2.5-flash
+```
+
+### 한국어 입력 테스트 🇰🇷
+
+```bash
+gemini
+> 안녕하세요! 한국어 입력이 완벽하게 작동합니다! 🎉
+> 자소 분리 문제가 해결되었습니다.
+> 자유롭게 한글로 대화하세요!
+```
+
+---
+
+## 📚 문서
+
+원본 Gemini CLI의 모든 문서가 이 한국어 에디션에도 적용됩니다:
+
+- [빠른 시작 가이드](./docs/get-started/index.md)
+- [인증 설정](./docs/get-started/authentication.md)
+- [명령어 참조](./docs/cli/commands.md)
+- [MCP 서버 통합](./docs/tools/mcp-server.md)
+
+---
+
+## 🤝 기여하기
+
+이것은 커뮤니티 포크입니다. 기여를 환영합니다!
+
+### 이슈 보고
+- **한국어 입력 문제**: 이 저장소에 이슈 생성
+- **일반 Gemini CLI 문제**: [원본 저장소](https://github.com/google-gemini/gemini-cli/issues)에 보고
+
+---
+
+## 🔗 링크
+
+- **원본 저장소**: https://github.com/google-gemini/gemini-cli
+- **이 포크**: https://github.com/WRL-SPR/gemini-cli_ko
+- **릴리즈 노트**: [RELEASE_NOTES_KO.md](./RELEASE_NOTES_KO.md)
+- **NPM 패키지**: https://www.npmjs.com/package/@wrl-spr/gemini-cli-ko
+
+---
+
+## 📄 법적 고지
+
+- **라이선스**: [Apache License 2.0](LICENSE)
+- **서비스 약관**: [Terms & Privacy](./docs/tos-privacy.md)
+
+---
+
+## 🙏 감사의 말
+
+- **Google Gemini Team** - 원본 Gemini CLI 개발
+- **Korean Developer Community** - CJK 입력 이슈 보고
+
+---
+
+<p align="center">
+  <strong>Original built with ❤️ by Google and the open source community</strong><br>
+  <strong>Korean Edition maintained with 🇰🇷 by <a href="https://github.com/WRL-SPR">WRL-SPR</a></strong>
+</p>
