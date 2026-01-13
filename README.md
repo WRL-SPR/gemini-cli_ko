@@ -1,375 +1,232 @@
-# Gemini CLI
+# Gemini CLI - Korean Edition (한국어 입력 지원)
 
-[![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
-[![Gemini CLI E2E (Chained)](https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml)
-[![Version](https://img.shields.io/npm/v/@google/gemini-cli)](https://www.npmjs.com/package/@google/gemini-cli)
-[![License](https://img.shields.io/github/license/google-gemini/gemini-cli)](https://github.com/google-gemini/gemini-cli/blob/main/LICENSE)
-[![View Code Wiki](https://www.gstatic.com/_/boq-sdlc-agents-ui/_/r/YUi5dj2UWvE.svg)](https://codewiki.google/github.com/google-gemini/gemini-cli)
+[![Korean Edition](https://img.shields.io/badge/Korean-Edition-blue.svg)](https://github.com/WRL-SPR/gemini-cli_ko)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 
-![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
+> **한국어 입력 문제 해결!** 이 포크는 원본 gemini-cli의 한국어 입력 버그를 수정했습니다.
+> 
+> **Korean Input Fixed!** This fork fixes the Korean input handling issues in the original gemini-cli.
 
-Gemini CLI is an open-source AI agent that brings the power of Gemini directly
-into your terminal. It provides lightweight access to Gemini, giving you the
-most direct path from your prompt to our model.
+## 🎯 주요 개선사항 (Key Improvements)
 
-Learn all about Gemini CLI in our [documentation](https://geminicli.com/docs/).
-
-## 🚀 Why Gemini CLI?
-
-- **🎯 Free tier**: 60 requests/min and 1,000 requests/day with personal Google
-  account.
-- **🧠 Powerful Gemini 2.5 Pro**: Access to 1M token context window.
-- **🔧 Built-in tools**: Google Search grounding, file operations, shell
-  commands, web fetching.
-- **🔌 Extensible**: MCP (Model Context Protocol) support for custom
-  integrations.
-- **💻 Terminal-first**: Designed for developers who live in the command line.
-- **🛡️ Open source**: Apache 2.0 licensed.
-
-## 📦 Installation
-
-### Pre-requisites before installation
-
-- Node.js version 20 or higher
-- macOS, Linux, or Windows
-
-### Quick Install
-
-#### Run instantly with npx
-
-```bash
-# Using npx (no installation required)
-npx @google/gemini-cli
-```
-
-#### Install globally with npm
-
-```bash
-npm install -g @google/gemini-cli
-```
-
-#### Install globally with Homebrew (macOS/Linux)
-
-```bash
-brew install gemini-cli
-```
-
-## Release Cadence and Tags
-
-See [Releases](./docs/releases.md) for more details.
-
-### Preview
-
-New preview releases will be published each week at UTC 2359 on Tuesdays. These
-releases will not have been fully vetted and may contain regressions or other
-outstanding issues. Please help us test and install with `preview` tag.
-
-```bash
-npm install -g @google/gemini-cli@preview
-```
-
-### Stable
-
-- New stable releases will be published each week at UTC 2000 on Tuesdays, this
-  will be the full promotion of last week's `preview` release + any bug fixes
-  and validations. Use `latest` tag.
-
-```bash
-npm install -g @google/gemini-cli@latest
-```
-
-### Nightly
-
-- New releases will be published each day at UTC 0000. This will be all changes
-  from the main branch as represented at time of release. It should be assumed
-  there are pending validations and issues. Use `nightly` tag.
-
-```bash
-npm install -g @google/gemini-cli@nightly
-```
-
-## 📋 Key Features
-
-### Code Understanding & Generation
-
-- Query and edit large codebases
-- Generate new apps from PDFs, images, or sketches using multimodal capabilities
-- Debug issues and troubleshoot with natural language
-
-### Automation & Integration
-
-- Automate operational tasks like querying pull requests or handling complex
-  rebases
-- Use MCP servers to connect new capabilities, including
-  [media generation with Imagen, Veo or Lyria](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
-- Run non-interactively in scripts for workflow automation
-
-### Advanced Capabilities
-
-- Ground your queries with built-in
-  [Google Search](https://ai.google.dev/gemini-api/docs/grounding) for real-time
-  information
-- Conversation checkpointing to save and resume complex sessions
-- Custom context files (GEMINI.md) to tailor behavior for your projects
-
-### GitHub Integration
-
-Integrate Gemini CLI directly into your GitHub workflows with
-[**Gemini CLI GitHub Action**](https://github.com/google-github-actions/run-gemini-cli):
-
-- **Pull Request Reviews**: Automated code review with contextual feedback and
-  suggestions
-- **Issue Triage**: Automated labeling and prioritization of GitHub issues based
-  on content analysis
-- **On-demand Assistance**: Mention `@gemini-cli` in issues and pull requests
-  for help with debugging, explanations, or task delegation
-- **Custom Workflows**: Build automated, scheduled and on-demand workflows
-  tailored to your team's needs
-
-## 🔐 Authentication Options
-
-Choose the authentication method that best fits your needs:
-
-### Option 1: Login with Google (OAuth login using your Google Account)
-
-**✨ Best for:** Individual developers as well as anyone who has a Gemini Code
-Assist License. (see
-[quota limits and terms of service](https://cloud.google.com/gemini/docs/quotas)
-for details)
-
-**Benefits:**
-
-- **Free tier**: 60 requests/min and 1,000 requests/day
-- **Gemini 2.5 Pro** with 1M token context window
-- **No API key management** - just sign in with your Google account
-- **Automatic updates** to latest models
-
-#### Start Gemini CLI, then choose _Login with Google_ and follow the browser authentication flow when prompted
-
-```bash
-gemini
-```
-
-#### If you are using a paid Code Assist License from your organization, remember to set the Google Cloud Project
-
-```bash
-# Set your Google Cloud Project
-export GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_ID"
-gemini
-```
-
-### Option 2: Gemini API Key
-
-**✨ Best for:** Developers who need specific model control or paid tier access
-
-**Benefits:**
-
-- **Free tier**: 100 requests/day with Gemini 2.5 Pro
-- **Model selection**: Choose specific Gemini models
-- **Usage-based billing**: Upgrade for higher limits when needed
-
-```bash
-# Get your key from https://aistudio.google.com/apikey
-export GEMINI_API_KEY="YOUR_API_KEY"
-gemini
-```
-
-### Option 3: Vertex AI
-
-**✨ Best for:** Enterprise teams and production workloads
-
-**Benefits:**
-
-- **Enterprise features**: Advanced security and compliance
-- **Scalable**: Higher rate limits with billing account
-- **Integration**: Works with existing Google Cloud infrastructure
-
-```bash
-# Get your key from Google Cloud Console
-export GOOGLE_API_KEY="YOUR_API_KEY"
-export GOOGLE_GENAI_USE_VERTEXAI=true
-gemini
-```
-
-For Google Workspace accounts and other authentication methods, see the
-[authentication guide](./docs/get-started/authentication.md).
-
-## 🚀 Getting Started
-
-### Basic Usage
-
-#### Start in current directory
-
-```bash
-gemini
-```
-
-#### Include multiple directories
-
-```bash
-gemini --include-directories ../lib,../docs
-```
-
-#### Use specific model
-
-```bash
-gemini -m gemini-2.5-flash
-```
-
-#### Non-interactive mode for scripts
-
-Get a simple text response:
-
-```bash
-gemini -p "Explain the architecture of this codebase"
-```
-
-For more advanced scripting, including how to parse JSON and handle errors, use
-the `--output-format json` flag to get structured output:
-
-```bash
-gemini -p "Explain the architecture of this codebase" --output-format json
-```
-
-For real-time event streaming (useful for monitoring long-running operations),
-use `--output-format stream-json` to get newline-delimited JSON events:
-
-```bash
-gemini -p "Run tests and deploy" --output-format stream-json
-```
-
-### Quick Examples
-
-#### Start a new project
-
-```bash
-cd new-project/
-gemini
-> Write me a Discord bot that answers questions using a FAQ.md file I will provide
-```
-
-#### Analyze existing code
-
-```bash
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
-> Give me a summary of all of the changes that went in yesterday
-```
-
-## 📚 Documentation
-
-### Getting Started
-
-- [**Quickstart Guide**](./docs/get-started/index.md) - Get up and running
-  quickly.
-- [**Authentication Setup**](./docs/get-started/authentication.md) - Detailed
-  auth configuration.
-- [**Configuration Guide**](./docs/get-started/configuration.md) - Settings and
-  customization.
-- [**Keyboard Shortcuts**](./docs/cli/keyboard-shortcuts.md) - Productivity
-  tips.
-
-### Core Features
-
-- [**Commands Reference**](./docs/cli/commands.md) - All slash commands
-  (`/help`, `/chat`, etc).
-- [**Custom Commands**](./docs/cli/custom-commands.md) - Create your own
-  reusable commands.
-- [**Context Files (GEMINI.md)**](./docs/cli/gemini-md.md) - Provide persistent
-  context to Gemini CLI.
-- [**Checkpointing**](./docs/cli/checkpointing.md) - Save and resume
-  conversations.
-- [**Token Caching**](./docs/cli/token-caching.md) - Optimize token usage.
-
-### Tools & Extensions
-
-- [**Built-in Tools Overview**](./docs/tools/index.md)
-  - [File System Operations](./docs/tools/file-system.md)
-  - [Shell Commands](./docs/tools/shell.md)
-  - [Web Fetch & Search](./docs/tools/web-fetch.md)
-- [**MCP Server Integration**](./docs/tools/mcp-server.md) - Extend with custom
-  tools.
-- [**Custom Extensions**](./docs/extensions/index.md) - Build and share your own
-  commands.
-
-### Advanced Topics
-
-- [**Headless Mode (Scripting)**](./docs/cli/headless.md) - Use Gemini CLI in
-  automated workflows.
-- [**Architecture Overview**](./docs/architecture.md) - How Gemini CLI works.
-- [**IDE Integration**](./docs/ide-integration/index.md) - VS Code companion.
-- [**Sandboxing & Security**](./docs/cli/sandbox.md) - Safe execution
-  environments.
-- [**Trusted Folders**](./docs/cli/trusted-folders.md) - Control execution
-  policies by folder.
-- [**Enterprise Guide**](./docs/cli/enterprise.md) - Deploy and manage in a
-  corporate environment.
-- [**Telemetry & Monitoring**](./docs/cli/telemetry.md) - Usage tracking.
-- [**Tools API Development**](./docs/core/tools-api.md) - Create custom tools.
-- [**Local development**](./docs/local-development.md) - Local development
-  tooling.
-
-### Troubleshooting & Support
-
-- [**Troubleshooting Guide**](./docs/troubleshooting.md) - Common issues and
-  solutions.
-- [**FAQ**](./docs/faq.md) - Frequently asked questions.
-- Use `/bug` command to report issues directly from the CLI.
-
-### Using MCP Servers
-
-Configure MCP servers in `~/.gemini/settings.json` to extend Gemini CLI with
-custom tools:
-
-```text
-> @github List my open pull requests
-> @slack Send a summary of today's commits to #dev channel
-> @database Run a query to find inactive users
-```
-
-See the [MCP Server Integration guide](./docs/tools/mcp-server.md) for setup
-instructions.
-
-## 🤝 Contributing
-
-We welcome contributions! Gemini CLI is fully open source (Apache 2.0), and we
-encourage the community to:
-
-- Report bugs and suggest features.
-- Improve documentation.
-- Submit code improvements.
-- Share your MCP servers and extensions.
-
-See our [Contributing Guide](./CONTRIBUTING.md) for development setup, coding
-standards, and how to submit pull requests.
-
-Check our [Official Roadmap](https://github.com/orgs/google-gemini/projects/11)
-for planned features and priorities.
-
-## 📖 Resources
-
-- **[Official Roadmap](./ROADMAP.md)** - See what's coming next.
-- **[Changelog](./docs/changelogs/index.md)** - See recent notable updates.
-- **[NPM Package](https://www.npmjs.com/package/@google/gemini-cli)** - Package
-  registry.
-- **[GitHub Issues](https://github.com/google-gemini/gemini-cli/issues)** -
-  Report bugs or request features.
-- **[Security Advisories](https://github.com/google-gemini/gemini-cli/security/advisories)** -
-  Security updates.
-
-### Uninstall
-
-See the [Uninstall Guide](docs/cli/uninstall.md) for removal instructions.
-
-## 📄 Legal
-
-- **License**: [Apache License 2.0](LICENSE)
-- **Terms of Service**: [Terms & Privacy](./docs/tos-privacy.md)
-- **Security**: [Security Policy](SECURITY.md)
+- ✅ **한국어 입력 완벽 지원** - 조합 중인 한글이 제대로 입력됩니다
+- ✅ **Korean Input Support** - Properly handles Korean character composition (Hangul Jamo)
+- ✅ **버그 수정** - 원본의 한국어 입력 시 발생하던 문제 해결
+- ✅ **Bug Fixes** - Resolved issues with Korean input in the original version
 
 ---
 
-<p align="center">
-  Built with ❤️ by Google and the open source community
-</p>
+## 📖 소개 (Introduction)
+
+Google Gemini AI와 대화할 수 있는 강력한 명령줄 인터페이스입니다. 이제 한국어 입력을 완벽하게 지원합니다!
+
+A powerful command-line interface for interacting with Google's Gemini AI, now with full Korean language input support!
+
+## ✨ 기능 (Features)
+
+- 💬 **대화형 채팅** - Gemini AI와 자연스러운 대화
+- 🌍 **다국어 지원** - 한국어를 포함한 모든 언어 완벽 지원
+- 📁 **파일 업로드** - 이미지 및 문서 분석
+- 🎨 **구문 강조** - 코드 블록의 아름다운 표시
+- 📝 **마크다운 렌더링** - 응답을 포맷팅된 마크다운으로 표시
+- 💾 **대화 기록** - 대화 저장 및 불러오기
+- ⚙️ **설정 가능** - 모델, 온도, 최대 토큰 수 등 조정 가능
+- 🔒 **안전한 API 키 관리** - 환경 변수를 통한 보안
+
+## 📋 요구사항 (Requirements)
+
+- Node.js 18.0.0 이상
+- Google Gemini API 키 ([여기서 발급](https://makersuite.google.com/app/apikey))
+
+## 🚀 설치 방법 (Installation)
+
+### Git Clone으로 설치 (Installation via Git Clone)
+
+```bash
+# 저장소 클론
+git clone https://github.com/WRL-SPR/gemini-cli_ko.git
+
+# 디렉토리 이동
+cd gemini-cli_ko
+
+# 의존성 설치
+npm install
+
+# 전역 설치 (선택사항)
+npm link
+```
+
+### 설정 (Configuration)
+
+API 키를 환경 변수로 설정하세요:
+
+```bash
+# Linux/Mac
+export GEMINI_API_KEY='your-api-key-here'
+
+# Windows (PowerShell)
+$env:GEMINI_API_KEY='your-api-key-here'
+
+# Windows (CMD)
+set GEMINI_API_KEY=your-api-key-here
+```
+
+또는 `.env` 파일을 프로젝트 루트에 생성:
+
+```
+GEMINI_API_KEY=your-api-key-here
+```
+
+## 💡 사용법 (Usage)
+
+### 기본 사용 (Basic Usage)
+
+```bash
+# 대화형 모드 시작
+gemini-cli
+
+# 또는 로컬 설치 시
+node src/index.js
+```
+
+### 한국어 입력 테스트 (Korean Input Test)
+
+```bash
+# 한국어로 질문하기
+gemini-cli
+
+> 안녕하세요! 한국어로 대화할 수 있나요?
+> 서울의 날씨에 대해 알려주세요.
+> 프로그래밍에서 변수란 무엇인가요?
+```
+
+### 파일과 함께 사용 (With Files)
+
+```bash
+# 이미지 분석
+gemini-cli --file ./image.jpg
+
+# 여러 파일 업로드
+gemini-cli --file ./doc1.pdf --file ./image.png
+```
+
+### 명령 옵션 (Command Options)
+
+```bash
+# 특정 모델 사용
+gemini-cli --model gemini-1.5-pro
+
+# 온도 설정 (창의성 조절)
+gemini-cli --temperature 0.8
+
+# 최대 토큰 수 설정
+gemini-cli --max-tokens 2048
+
+# 시스템 프롬프트 설정
+gemini-cli --system "You are a helpful coding assistant"
+
+# 대화 저장
+gemini-cli --save conversation.json
+
+# 대화 불러오기
+gemini-cli --load conversation.json
+```
+
+## 🎮 인터랙티브 명령어 (Interactive Commands)
+
+대화형 모드에서 사용 가능한 명령어:
+
+- `/help` - 도움말 표시
+- `/clear` - 대화 기록 지우기
+- `/save [filename]` - 대화 저장
+- `/load [filename]` - 대화 불러오기
+- `/model [name]` - 모델 변경
+- `/temperature [value]` - 온도 설정
+- `/file [path]` - 파일 업로드
+- `/exit` - 종료
+
+## 🔧 고급 설정 (Advanced Configuration)
+
+설정 파일을 생성하여 기본값을 변경할 수 있습니다 (`~/.gemini-cli-config.json`):
+
+```json
+{
+  "model": "gemini-1.5-pro",
+  "temperature": 0.7,
+  "maxTokens": 4096,
+  "systemPrompt": "You are a helpful assistant that responds in Korean when appropriate."
+}
+```
+
+## 🐛 문제 해결 (Troubleshooting)
+
+### 한국어 입력이 안 되는 경우
+
+이 Korean Edition을 사용하고 있는지 확인하세요:
+
+```bash
+git remote -v
+# origin이 https://github.com/WRL-SPR/gemini-cli_ko.git 인지 확인
+```
+
+### API 키 오류
+
+```bash
+# API 키가 올바르게 설정되었는지 확인
+echo $GEMINI_API_KEY  # Linux/Mac
+echo %GEMINI_API_KEY%  # Windows
+```
+
+### 의존성 오류
+
+```bash
+# node_modules 삭제 후 재설치
+rm -rf node_modules package-lock.json
+npm install
+```
+
+## 📚 지원되는 모델 (Supported Models)
+
+- `gemini-1.5-pro` (기본값 / Default)
+- `gemini-1.5-flash`
+- `gemini-1.0-pro`
+- 기타 Gemini API가 지원하는 모든 모델
+
+## 🤝 기여하기 (Contributing)
+
+이슈나 풀 리퀘스트는 언제나 환영합니다!
+
+Contributions are always welcome!
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 라이선스 (License)
+
+MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+
+## 🙏 감사의 말 (Acknowledgments)
+
+- 원본 프로젝트에 감사드립니다
+- Google Gemini API 팀에 감사드립니다
+- 한국어 입력 버그를 발견하고 보고해주신 모든 분들께 감사드립니다
+
+## 🔗 링크 (Links)
+
+- [GitHub Repository](https://github.com/WRL-SPR/gemini-cli_ko)
+- [Issue Tracker](https://github.com/WRL-SPR/gemini-cli_ko/issues)
+- [Google Gemini API Documentation](https://ai.google.dev/docs)
+
+## 📞 연락처 (Contact)
+
+문제가 있거나 제안사항이 있으시면 [이슈를 생성](https://github.com/WRL-SPR/gemini-cli_ko/issues)해주세요.
+
+---
+
+**Made with ❤️ for the Korean Developer Community**
+
+**한국 개발자 커뮤니티를 위해 ❤️로 만들었습니다**
