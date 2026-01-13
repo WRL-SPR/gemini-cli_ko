@@ -1,5 +1,10 @@
 # Gemini CLI - Korean Edition (한국어 입력 지원) 🇰🇷
 
+> **🌐 Language / 언어 선택**
+>
+> - 🇰🇷 **한국어** (현재 문서)
+> - 🇬🇧 **English** → [README_EN.md](./README_EN.md)
+
 [![Korean Edition](https://img.shields.io/badge/Korean-Edition-blue.svg)](https://github.com/WRL-SPR/gemini-cli_ko)
 [![Version](https://img.shields.io/npm/v/@wrl-spr/gemini-cli-ko)](https://www.npmjs.com/package/@wrl-spr/gemini-cli-ko)
 [![License](https://img.shields.io/github/license/WRL-SPR/gemini-cli_ko)](https://github.com/WRL-SPR/gemini-cli_ko/blob/main/LICENSE)
@@ -14,11 +19,13 @@
 ## 🇰🇷 한국어 에디션의 특징
 
 ### ✅ 해결된 문제
+
 - **자소 분리 문제 해결**: 한글이 더 이상 ㄱ,ㅏ,ㄴ 으로 분해되지 않습니다
-- **IME 입력 지원**: Windows 한글 IME가 완벽하게 동작합니다  
+- **IME 입력 지원**: Windows 한글 IME가 완벽하게 동작합니다
 - **완전한 한글 입력**: 자연스러운 한국어 타이핑 경험
 
 ### 🔧 기술적 개선사항
+
 - KeypressContext에서 통합 입력 처리
 - Ink의 useInput 비활성화로 충돌 방지
 - IME composition state 완벽 지원
@@ -43,6 +50,7 @@
 ## 📦 설치 방법
 
 ### 필수 요구사항
+
 - **Node.js 20.0.0 이상**
 - macOS, Linux, 또는 Windows
 
@@ -77,8 +85,10 @@ npm link
 
 이 포크는 원본과 충돌을 피하기 위해 다른 패키지 이름을 사용합니다:
 
-- ❌ **설치하면 안 되는 것**: npm install -g @google/gemini-cli (원본, 한글 입력 문제 있음)
-- ✅ **설치해야 하는 것**: npm install -g @wrl-spr/gemini-cli-ko (한국어 에디션, 문제 해결됨)
+- ❌ **설치하면 안 되는 것**: npm install -g @google/gemini-cli (원본, 한글 입력
+  문제 있음)
+- ✅ **설치해야 하는 것**: npm install -g @wrl-spr/gemini-cli-ko (한국어 에디션,
+  문제 해결됨)
 
 ---
 
@@ -89,6 +99,7 @@ npm link
 **✨ 최적**: 개인 개발자 및 Gemini Code Assist 라이선스 보유자
 
 **장점**:
+
 - 무료 티어: 분당 60회, 일일 1,000회
 - **Gemini 2.5 Pro** (1M 토큰 컨텍스트)
 - API 키 관리 불필요
@@ -158,8 +169,10 @@ gemini
 이것은 커뮤니티 포크입니다. 기여를 환영합니다!
 
 ### 이슈 보고
+
 - **한국어 입력 문제**: 이 저장소에 이슈 생성
-- **일반 Gemini CLI 문제**: [원본 저장소](https://github.com/google-gemini/gemini-cli/issues)에 보고
+- **일반 Gemini CLI 문제**:
+  [원본 저장소](https://github.com/google-gemini/gemini-cli/issues)에 보고
 
 ---
 
